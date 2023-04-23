@@ -1,10 +1,13 @@
+from bot_commands.__init__ import*
+
 async def convert_currency(message: types.Message):
     """
     Конвертирует валюты
     https://www.exchangerate-api.com/docs/supported-currencies
     """
     # Получить параметры конвертации от пользователя
-    amount, from_currency, to_currency = message.text.split()[1:]
+    print(message.get_args())
+    amount, from_currency, to_currency = message.text.upper().split()[1:]
 
     # Сформировать URL запроса к API курсов валют
     url = f'https://api.exchangerate-api.com/v4/latest/{from_currency}'
@@ -31,4 +34,5 @@ async def convert_currency(message: types.Message):
         await message.answer('Не удалось получить данные о курсах валют.')
     except Exception as e:
         lgg.error(f'Ошибка: {e}')
-        await message.answer('Произошла ошибка при выполнении запроса. Попробуйте позже.')
+        await message.answer('Не удалось создать запрос\n'
+        "- напишите команду /convert 'ДЕНЕЖНАЯ СУММА В ЦИФРАХ' 'ТЕКУЩАЯ ВАЛЮТА(ФОРМАТ БИРЖИ)' 'ВАЛЮТА В КОТОРУЮ НУЖНО ПЕРЕВЕСТИ(ФОРМАТ БИРЖИ)'")

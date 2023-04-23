@@ -1,3 +1,5 @@
+from bot_commands.__init__ import*
+API_KEY = os.environ.get("API_WEATHER_TOKEN")
 
 # Функция для получения текущей погоды
 async def get_weather(message: types.Message):
@@ -34,4 +36,5 @@ async def get_weather(message: types.Message):
         await message.answer(f'Не удалось получить данные о погоде в городе {city}.')
     except Exception as e:
         lgg.error(f'Ошибка: {e}')
-        await message.answer('Произошла ошибка при выполнении запроса. Попробуйте позже.')
+        await message.answer('Не удалось создать запрос\n'
+                                     "- напишите команду /weather 'НАЗВАНИЕ ГОРОДА'")

@@ -1,3 +1,4 @@
+from bot_commands.__init__ import*
 async def send_random_animal_pic(message: types.Message):
     """
     Отправляет случайную картинку с милым животным
